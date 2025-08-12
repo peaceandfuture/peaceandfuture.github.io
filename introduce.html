@@ -46,6 +46,24 @@
 				font-size: 1.2em;
 			}
 
+			.gallery-item video {
+			width: 100%;             /* 부모 너비에 맞춰 자동 조정 */
+			height: auto;            /* 비율 유지 */
+			display: block;          /* 이미지처럼 블록 요소로 */
+			border-radius: 12px;     /* 모서리 둥글게 */
+			background: #000;        /* 로딩 중 검은 배경 */
+			max-height: 600px;       /* 너무 커지지 않게 제한 */
+			object-fit: cover;       /* 잘림 없이 채우기 */
+		}
+
+		/* 비디오를 가운데 정렬 */
+		.video-wrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+		}
+
 			.gallery-text p {
 				font-size: 0.95em;
 				line-height: 1.6;
@@ -100,12 +118,20 @@
 						<h2>“과거 원폭의 아픔을 두 도시 방문을 통해 역사적으로 기억하고 오사카 엑스포 탐방을 통해 다가올 미래 미디어 혁신 가능성을 탐구함으로써 대한민국 언론의 내일을 함께 설계한다."</h2>
 					</div>
 					<div style="margin-top: 1em;"></div>
-						<!--인트로 박스-->
+
 						<div class="gallery-item">
-							<div class="gallery-text">
-							<p>미디어커뮤니케이션 전공에게 중요한 덕목은 ‘인간에 대한 애정’과 새로운 사회 현상에 대한 ’열정적 관심‘, 그리고 ’스토리텔링 능력‘이라고 축약할 수 있습니다. 이러한 필요성에 따라 중앙대학교에서 본 프로그램이 시작되었습니다. 이 프로그램은 2025년 7월 6일부터 7월 14일까지 일본 나가사키, 히로시마, 오사카 일대에서 평화를 모색하는 ‘역사적 성찰’과 미래 비전을 지향하는 ‘첨단 기술 탐구’라는 두 주제를 중심으로 배우고, 이를 표현합니다.</p>
-							</div>
+						<div class="video-wrapper">
+							<video 
+								src="https://youtu.be/4wmsQkHCe2s" 
+								controls 
+								playsinline 
+								>
+							</video>
 						</div>
+						<div class="gallery-text">
+							<p>미디어커뮤니케이션 전공에게 중요한 덕목은 ‘인간에 대한 애정’과 새로운 사회 현상에 대한 ’열정적 관심‘, 그리고 ’스토리텔링 능력‘이라고 축약할 수 있습니다. 이러한 필요성에 따라 중앙대학교에서 본 프로그램이 시작되었습니다. 이 프로그램은 2025년 7월 6일부터 7월 14일까지 일본 나가사키, 히로시마, 오사카 일대에서 평화를 모색하는 ‘역사적 성찰’과 미래 비전을 지향하는 ‘첨단 기술 탐구’라는 두 주제를 중심으로 배우고, 이를 표현합니다.</p>
+						</div>
+					</div>
 
 						<!-- 박스 1 -->
 						<div class="gallery-item">

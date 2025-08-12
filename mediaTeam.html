@@ -11,7 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 
-				<style>
+		<style>
 		:root{--ink:#1b1b1b;--muted:#666;--line:#e6e6e6;--card:#fafafa}
 
 		.archive-intro{margin:6px 0 18px;color:var(--muted);line-height:1.6;font-size:14px}
@@ -53,8 +53,8 @@
 		width: 64px;
 		height: 64px;
 		border-radius: 9999px;
-		border: 1.5px solid #cfcfcf;
-		background: #fff;
+		border: 1.5px solid #393939;
+		background: #9a9a9a;
 		display: grid;
 		place-items: center;
 		justify-self: center;
@@ -63,8 +63,8 @@
 		transition: transform .08s ease, background .15s ease;
 		}
 
-		.arrow:hover{background:#f6f6f6;transform:translateX(1px)}
-		.arrow svg{width:22px;height:22px;stroke:#6f6f6f}
+		.arrow:hover{background:#141414;transform:translateX(1px)}
+		.arrow svg{width:22px;height:22px;stroke:#3f3f3f}
 
 		/* 가운데 콘텐츠(작품 3개 + 오른쪽 텍스트) */
 		.content{grid-column:2; grid-row:2;
@@ -224,31 +224,60 @@
 		/* ====== 데이터 (작품 3개 고정: 4:3 하나 + 1:1 두 개) ====== */
 		const people = [
 			{
-			name: "강대현", meta: "미디어커뮤니케이션학과, 24",
-			drive: "https://drive.google.com/drive/folders/1jSNxfIgfHX9uWen7FU0AQhMeJI-irZCS?usp=drive_link",
+			name: "김유경", meta: "미디어커뮤니케이션학과, 콘텐츠기획, 게임인터렉티브미디어 복수전공",
+			drive: "https://drive.google.com/drive/folders/15PPBUeL0qCY89ugtikDdYuufPDZ2GeCF?usp=drive_link",
 			works: [
-				{ type: "image", src: "gallery/peace1.png" }, // 4:3
-				{ type: "image", src: "gallery/peace2.png" }, // 1:1(위)
-				{ type: "image", src: "gallery/peace3.png" }  // 1:1(아래)
+				{ type: "video", src: "https://youtu.be/sKrAKRFXJPo" }, // 4:3
+				{ type: "image", src: "images/공연영_1_김유경_2.png" }, // 1:1(위)
+				{ type: "image", src: "images/공연영_1_김유경_3.png" }  // 1:1(아래)
 			],
 			lines: [ /*10줄까지 쓸 수 있음*/
-				"바다와 호수, 다시 숨 쉬는 풍경",
-				"잔해 위에서 돋아나는 새싹",
-				"물을 머금은 공기, 평화의 기도",
-				""
+				"바람에 스민 이름들,",
+				"마음으로 부르는 위로의 노래"
 			],
-			desc: "전쟁의 잔해 위에도 생명은 피어난다 — 물과 식물, 그리고 호흡."
+			desc: "추모공연, 원폭희생자추모, 기억과화해"
 			},
 			{
-			name: "홍길동", meta: "디자인학과, 23",
-			drive: "https://example.com",
+			name: "송상현", meta: "사진학과, 철학과 복수전공",
+			drive: "https://drive.google.com/drive/folders/1FjV6QNYle5cubVSzkt4wCP-lfR0TQy5P?usp=drive_link",
 			works: [
-				{ type: "image", src: "gallery/alt1.jpg" },
-				{ type: "image", src: "gallery/alt2.jpg" },
-				{ type: "image", src: "gallery/alt3.jpg" }
+				{ type: "video", src: "https://youtu.be/hxd1Bx1cUzE" }, // 4:3
+				{ type: "image", src: "images/공연영_3_송상현_2.jpg" }, // 1:1(위)
+				{ type: "image", src: "images/공연영_3_송상현_3.jpg" }  // 1:1(아래)
 			],
-			lines: ["기억의 파편을 모아","서로의 발자국을 잇다"],
-			desc: "기억은 남고, 남은 기억이 우리를 움직인다."
+			lines: [ /*10줄까지 쓸 수 있음*/
+				"폐쇄된 다카시마 조선인 공양탑",
+				"앞에서 진행한 윤서빈의", "<가시리> 공연에,",
+				"기무라 활동가의 발언과 ",
+				"학생들의 시선을 교차시켜","잊힌 존재들을 호명한다."
+			],
+			desc: "조선인공양탑, 강제징용, 잊혀진존재, 가시리"
+			},
+			{
+			name: "박주은", meta: "음악학부 관현악 전공",
+			drive: "https://drive.google.com/drive/folders/1U0DDNXV40gIXrF4KfN6vuCrPV_3m4OEB?usp=sharing",
+			works: [
+				{ type: "image", src: "images/공연영_2_박주은_1.jpeg" },
+				{ type: "image", src: "images/공연영_2_박주은_2.jpeg" },
+				{ type: "image", src: "images/공연영_2_박주은_3.jpeg" }
+			],
+			lines: ["‘천개의 바람’과", "‘고향의 봄’을 연주하며","이별과 그리움,"," 고향의 기억을 나누고","한일의 상처를 위로하며","평화와 치유의 메시지를 전한 무대"],
+			desc: "첼로, 평화의메세지"
+			},
+			{
+			name: "윤서빈", meta: "국악전공",
+			drive: "https://drive.google.com/drive/folders/165FEd7MeHvaKYobHppEb5E1l5VULk5ir?usp=drive_link",
+			works: [
+				{ type: "image", src: "images/공연영_4_윤서빈_1.jpg" }, // 4:3
+				{ type: "image", src: "images/공연영_4_윤서빈_2.jpg" }, // 1:1(위)
+				{ type: "image", src: "images/공연영_4_윤서빈_3.jpg" }  // 1:1(아래)
+			],
+			lines: [ /*10줄까지 쓸 수 있음*/
+				"우리네 바른 노래, 정가가",
+				"역사를 담아 상처를 치유하는",
+				"노래가 되었기를 바랍니다.",
+			],
+			desc: "정가, 가시리, 아름다운나라"
 			}
 		];
 
