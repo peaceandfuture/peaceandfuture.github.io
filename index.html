@@ -14,6 +14,13 @@
     <meta property="og:image" content="/images/thumbnail.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+	<style>
+		/* 위 1px 잘라내기 */
+		#main .image.featured.fixline img{
+		clip-path: inset(3px 0 0 1px); /* top right bottom left */
+		}
+	</style>
+
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -50,6 +57,7 @@
 								<p>기억과 연대의 힘으로 내일을 설계한 2025년 여름을 기록합니다.</p>
 							</header>
 						</section>
+				</section>
 
 			<!-- Main -->
 				<section id="main">
@@ -79,7 +87,7 @@
 											</div>
 											<div class="col-3 col-6-medium col-12-small">
 												<section class="box">
-													<a class="image featured"><img src="images/team_pic.jpg" alt="" /></a>
+													<a class="image featured fixline"><img src="images/team_pic.jpg" alt=""/></a>
 													<header>
 														<h3>사진 기록 팀</h3>
 													</header>
@@ -93,7 +101,7 @@
 											</div>
 											<div class="col-3 col-6-medium col-12-small">
 												<section class="box">
-													<a class="image featured"><img src="images/team_design.jpg" alt="" /></a>
+													<a class="image featured fixline"><img src="images/team_design.jpg" alt="" /></a>
 													<header>
 														<h3>디자인 팀</h3>
 													</header>
@@ -182,19 +190,16 @@
 								</section>
 							</div>
 							<div class="col-12">
-
 								<!-- Copyright -->
 									<div id="copyright">
 										<ul class="links">
 											<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 										</ul>
 									</div>
-
 							</div>
 						</div>
 					</div>
 				</section>
-
 		</div>
 
 		<!-- Scripts -->

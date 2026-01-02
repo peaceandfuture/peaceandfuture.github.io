@@ -63,8 +63,8 @@
 		transition: transform .08s ease, background .15s ease;
 		}
 
-		.arrow:hover{background:#141414;transform:translateX(1px)}
-		.arrow svg{width:22px;height:22px;stroke:#3f3f3f}
+		.arrow:hover{background:#3a3a3a;transform:translateX(1px)}
+		.arrow svg{flex:0 0 auto; width:24px; height:24px; stroke:#3f3f3f; transform: translateX(-7.5px); }
 
 		/* 가운데 콘텐츠(작품 3개 + 오른쪽 텍스트) */
 		.content{grid-column:2; grid-row:2;
@@ -83,6 +83,8 @@
 			overflow:hidden; display:flex; align-items:center; justify-content:center;
 		}
 		.card img,.card video{width:100%;height:100%;object-fit:cover;display:block}
+
+		.card iframe{width:100%;height:100%;border:0;display:block}
 
 		/* 위치 매핑 */
 		#cardA{grid-column:1; grid-row:1 / span 2;} /* 큰 4:3 */
@@ -173,7 +175,7 @@
 				</section>
 
 			<!-- Main -->
-				<section id="main">
+				<section id="main" style="padding-bottom: 30px">
 					<div class="container">
 						<br>
 						<h2>공연 및 영상 팀 아카이브</h2>
@@ -220,158 +222,181 @@
 
 		</div>
 
-				<script>
-		/* ====== 데이터 (작품 3개 고정: 4:3 하나 + 1:1 두 개) ====== */
-		const people = [
-			{
-			name: "김유경", meta: "미디어커뮤니케이션학과, 콘텐츠기획, 게임인터렉티브미디어 복수전공",
-			drive: "https://drive.google.com/drive/folders/15PPBUeL0qCY89ugtikDdYuufPDZ2GeCF?usp=drive_link",
-			works: [
-				{ type: "video", src: "https://youtu.be/sKrAKRFXJPo" }, // 4:3
-				{ type: "image", src: "images/공연영_1_김유경_2.png" }, // 1:1(위)
-				{ type: "image", src: "images/공연영_1_김유경_3.png" }  // 1:1(아래)
-			],
-			lines: [ /*10줄까지 쓸 수 있음*/
-				"바람에 스민 이름들,",
-				"마음으로 부르는 위로의 노래"
-			],
-			desc: "추모공연, 원폭희생자추모, 기억과화해"
-			},
-			{
-			name: "송상현", meta: "사진학과, 철학과 복수전공",
-			drive: "https://drive.google.com/drive/folders/1FjV6QNYle5cubVSzkt4wCP-lfR0TQy5P?usp=drive_link",
-			works: [
-				{ type: "video", src: "https://youtu.be/hxd1Bx1cUzE" }, // 4:3
-				{ type: "image", src: "images/공연영_3_송상현_2.jpg" }, // 1:1(위)
-				{ type: "image", src: "images/공연영_3_송상현_3.jpg" }  // 1:1(아래)
-			],
-			lines: [ /*10줄까지 쓸 수 있음*/
-				"폐쇄된 다카시마 조선인 공양탑",
-				"앞에서 진행한 윤서빈의", "<가시리> 공연에,",
-				"기무라 활동가의 발언과 ",
-				"학생들의 시선을 교차시켜","잊힌 존재들을 호명한다."
-			],
-			desc: "조선인공양탑, 강제징용, 잊혀진존재, 가시리"
-			},
-			{
-			name: "박주은", meta: "음악학부 관현악 전공",
-			drive: "https://drive.google.com/drive/folders/1U0DDNXV40gIXrF4KfN6vuCrPV_3m4OEB?usp=sharing",
-			works: [
-				{ type: "image", src: "images/공연영_2_박주은_1.jpeg" },
-				{ type: "image", src: "images/공연영_2_박주은_2.jpeg" },
-				{ type: "image", src: "images/공연영_2_박주은_3.jpeg" }
-			],
-			lines: ["‘천개의 바람’과", "‘고향의 봄’을 연주하며","이별과 그리움,"," 고향의 기억을 나누고","한일의 상처를 위로하며","평화와 치유의 메시지를 전한 무대"],
-			desc: "첼로, 평화의메세지"
-			},
-			{
-			name: "윤서빈", meta: "국악전공",
-			drive: "https://drive.google.com/drive/folders/165FEd7MeHvaKYobHppEb5E1l5VULk5ir?usp=drive_link",
-			works: [
-				{ type: "image", src: "images/공연영_4_윤서빈_1.jpg" }, // 4:3
-				{ type: "image", src: "images/공연영_4_윤서빈_2.jpg" }, // 1:1(위)
-				{ type: "image", src: "images/공연영_4_윤서빈_3.jpg" }  // 1:1(아래)
-			],
-			lines: [ /*10줄까지 쓸 수 있음*/
-				"우리네 바른 노래, 정가가",
-				"역사를 담아 상처를 치유하는",
-				"노래가 되었기를 바랍니다.",
-			],
-			desc: "정가, 가시리, 아름다운나라"
-			}
-		];
-
-		/* ====== 요소 ====== */
-		const headEl  = document.getElementById('personHead');
-		const whoEl   = document.getElementById('who');
-		const dotsEl  = document.getElementById('dots');
-		const descEl  = document.getElementById('desc');
-		const driveEl = document.getElementById('driveLink');
-		const textBox = document.getElementById('textLines');
-		const cardA   = document.getElementById('cardA');
-		const cardB   = document.getElementById('cardB');
-		const cardC   = document.getElementById('cardC');
-
-		const prevBtn = document.getElementById('prevBtn');
-		const nextBtn = document.getElementById('nextBtn');
-
-		/* ====== 렌더 유틸 ====== */
-		function put(item, target){
-			target.innerHTML = "";
-			if(!item){ target.appendChild(document.createElement('div')); return; }
-			if(item.type === "video"){
-			const v=document.createElement('video'); v.src=item.src; v.controls=true; v.playsInline=true;
-			target.appendChild(v);
-			}else{
-			const img=new Image(); img.src=item.src; target.appendChild(img);
-			}
-		}
-
-		function buildDots(active=0){
-			dotsEl.innerHTML = "";
-			people.forEach((_, idx)=>{
-			const d=document.createElement('div');
-			d.className = 'dot' + (idx===active ? ' active' : '');
-			d.addEventListener('click', ()=>go(idx));
-			dotsEl.appendChild(d);
-			});
-		}
-
-		function buildTextLines(lines = []) {
-		textBox.innerHTML = "";
-		const list = lines.length ? lines : Array(15).fill("");  // 기본 15줄
-		list.slice(0, 15).forEach(t => {
-			const div = document.createElement('div');
-			div.className = "uline";
-			div.textContent = t;  // 빈 문자열이면 밑줄만 보임
-			textBox.appendChild(div);
-		});
-		}
-		/* ====== 상태/렌더 ====== */
-		let cur=0;
-
-		function render(){
-			const p = people[cur];
-			headEl.innerHTML = `<span class="name">${p.name}</span> <span class="meta">(${p.meta || ""})</span>`;
-			whoEl.textContent  = `${p.name} — ${cur+1} / ${people.length}`;
-			descEl.textContent = p.desc || "";
-			if(p.drive) driveEl.href = p.drive;
-
-			// 작품 3개 매핑
-			const list = (p.works||[]).slice(0,3);
-			put(list[0], cardA); // 4:3
-			put(list[1], cardB); // 1:1 위
-			put(list[2], cardC); // 1:1 아래
-
-			buildTextLines(p.lines || []);
-			[...dotsEl.children].forEach((d,i)=>d.classList.toggle('active', i===cur));
-		}
-
-		function go(n){
-			cur = (n + people.length) % people.length; // 무한 순환
-			render();
-		}
-
-		/* ====== 이벤트 ====== */
-		prevBtn.addEventListener('click', ()=>go(cur-1));
-		nextBtn.addEventListener('click', ()=>go(cur+1));
-		window.addEventListener('keydown', e=>{
-			if(e.key === 'ArrowLeft')  go(cur-1);
-			if(e.key === 'ArrowRight') go(cur+1);
-		});
-
-		/* 초기화 */
-		buildDots(0);
-		render();
-		</script>
-
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+			/* ====== 데이터 (작품 3개 고정: 4:3 하나 + 1:1 두 개) ====== */
+			const people = [
+				{
+				name: "김유경", meta: "미디어커뮤니케이션학과, 콘텐츠기획, 게임인터렉티브미디어 복수전공",
+				drive: "https://drive.google.com/drive/folders/15PPBUeL0qCY89ugtikDdYuufPDZ2GeCF?usp=drive_link",
+				works: [
+					{ kind: "youtube", id: "sKrAKRFXJPo?si=djqOHWmNIT1D4TWN" }, // 4:3
+					{ kind: "image", src: "images/공연영_1_김유경_2.png" }, // 1:1(위)
+					{ kind: "image", src: "images/공연영_1_김유경_3.png" }  // 1:1(아래)
+				],
+				lines: [ /*10줄까지 쓸 수 있음*/
+					"바람에 스민 이름들,",
+					"마음으로 부르는 위로의 노래"
+				],
+				desc: "추모공연, 원폭희생자추모, 기억과화해"
+				},
+				{
+				name: "송상현", meta: "사진학과, 철학과 복수전공",
+				drive: "https://drive.google.com/drive/folders/1FjV6QNYle5cubVSzkt4wCP-lfR0TQy5P?usp=drive_link",
+				works: [
+					{ kind: "youtube", id: "hxd1Bx1cUzE?si=P1--5MMNmToxXZic" }, // 4:3
+					{ kind: "image", src: "images/공연영_3_송상현_2.jpg" }, // 1:1(위)
+					{ kind: "image", src: "images/공연영_3_송상현_3.jpg" }  // 1:1(아래)
+				],
+				lines: [ /*10줄까지 쓸 수 있음*/
+					"폐쇄된 다카시마 조선인 공양탑",
+					"앞에서 진행한 윤서빈의", "<가시리> 공연에,",
+					"기무라 활동가의 발언과 ",
+					"학생들의 시선을 교차시켜","잊힌 존재들을 호명한다."
+				],
+				desc: "조선인공양탑, 강제징용, 잊혀진존재, 가시리"
+				},
+				{
+				name: "박주은", meta: "음악학부 관현악 전공",
+				drive: "https://drive.google.com/drive/folders/1U0DDNXV40gIXrF4KfN6vuCrPV_3m4OEB?usp=sharing",
+				works: [
+					{ kind: "image", src: "images/공연영_2_박주은_1.jpeg" },
+					{ kind: "image", src: "images/공연영_2_박주은_2.jpeg" },
+					{ kind: "image", src: "images/공연영_2_박주은_3.jpeg" }
+				],
+				lines: ["‘천개의 바람’과", "‘고향의 봄’을 연주하며","이별과 그리움,"," 고향의 기억을 나누고","한일의 상처를 위로하며","평화와 치유의 메시지를 전한 무대"],
+				desc: "첼로, 평화의메세지"
+				},
+				{
+				name: "윤서빈", meta: "국악전공",
+				drive: "https://drive.google.com/drive/folders/165FEd7MeHvaKYobHppEb5E1l5VULk5ir?usp=drive_link",
+				works: [
+					{ kind: "image", src: "images/공연영_4_윤서빈_1.jpg" }, // 4:3
+					{ kind: "image", src: "images/공연영_4_윤서빈_2.jpg" }, // 1:1(위)
+					{ kind: "image", src: "images/공연영_4_윤서빈_3.jpg" }  // 1:1(아래)
+				],
+				lines: [ /*10줄까지 쓸 수 있음*/
+					"우리네 바른 노래, 정가가",
+					"역사를 담아 상처를 치유하는",
+					"노래가 되었기를 바랍니다.",
+				],
+				desc: "정가, 가시리, 아름다운나라"
+				}
+			];
+
+			/* ====== 요소 ====== */
+			const headEl  = document.getElementById('personHead');
+			const whoEl   = document.getElementById('who');
+			const dotsEl  = document.getElementById('dots');
+			const descEl  = document.getElementById('desc');
+			const driveEl = document.getElementById('driveLink');
+			const textBox = document.getElementById('textLines');
+			const cardA   = document.getElementById('cardA');
+			const cardB   = document.getElementById('cardB');
+			const cardC   = document.getElementById('cardC');
+
+			const prevBtn = document.getElementById('prevBtn');
+			const nextBtn = document.getElementById('nextBtn');
+
+			/* ====== 렌더 유틸 ====== 
+			function put(item, target){
+				target.innerHTML = "";
+				if(!item){ target.appendChild(document.createElement('div')); return; }
+				if(item.type === "video"){
+				const v=document.createElement('video'); v.src=item.src; v.controls=true; v.playsInline=true;
+				target.appendChild(v);
+				}else{
+				const img=new Image(); img.src=item.src; target.appendChild(img);
+				}
+			}*/
+
+			function put(item, target){
+				target.innerHTML = "";
+				if(!item) return;
+
+				if(item.kind === "youtube"){
+					const iframe = document.createElement("iframe");
+					iframe.src = `https://www.youtube.com/embed/${item.id}`;
+					iframe.title = "YouTube video player";
+					iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+					iframe.referrerPolicy = "strict-origin-when-cross-origin";
+					iframe.allowFullscreen = true;
+					target.appendChild(iframe);
+					return;
+				}
+
+				// image
+				const img = new Image();
+				img.src = item.src;
+				img.alt = "";
+				target.appendChild(img);
+			}
+
+
+			function buildDots(active=0){
+				dotsEl.innerHTML = "";
+				people.forEach((_, idx)=>{
+				const d=document.createElement('div');
+				d.className = 'dot' + (idx===active ? ' active' : '');
+				d.addEventListener('click', ()=>go(idx));
+				dotsEl.appendChild(d);
+				});
+			}
+
+			function buildTextLines(lines = []) {
+			textBox.innerHTML = "";
+			const list = lines.length ? lines : Array(15).fill("");  // 기본 15줄
+			list.slice(0, 15).forEach(t => {
+				const div = document.createElement('div');
+				div.className = "uline";
+				div.textContent = t;  // 빈 문자열이면 밑줄만 보임
+				textBox.appendChild(div);
+			});
+			}
+			/* ====== 상태/렌더 ====== */
+			let cur=0;
+
+			function render(){
+				const p = people[cur];
+				headEl.innerHTML = `<span class="name">${p.name}</span> <span class="meta">(${p.meta || ""})</span>`;
+				whoEl.textContent  = `${p.name} — ${cur+1} / ${people.length}`;
+				descEl.textContent = p.desc || "";
+				if(p.drive) driveEl.href = p.drive;
+
+				// 작품 3개 매핑
+				const list = (p.works||[]).slice(0,3);
+				put(list[0], cardA); // 4:3
+				put(list[1], cardB); // 1:1 위
+				put(list[2], cardC); // 1:1 아래
+
+				buildTextLines(p.lines || []);
+				[...dotsEl.children].forEach((d,i)=>d.classList.toggle('active', i===cur));
+			}
+
+			function go(n){
+				cur = (n + people.length) % people.length; // 무한 순환
+				render();
+			}
+
+			/* ====== 이벤트 ====== */
+			prevBtn.addEventListener('click', ()=>go(cur-1));
+			nextBtn.addEventListener('click', ()=>go(cur+1));
+			window.addEventListener('keydown', e=>{
+				if(e.key === 'ArrowLeft')  go(cur-1);
+				if(e.key === 'ArrowRight') go(cur+1);
+			});
+
+			/* 초기화 */
+			buildDots(0);
+			render();
+		</script>
 
 	</body>
 </html>
